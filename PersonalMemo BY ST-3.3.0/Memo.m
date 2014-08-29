@@ -17,7 +17,7 @@
 @dynamic theme;
 @dynamic isRemind;
 @dynamic isHighlight;
-@dynamic order;
+@dynamic memoOrder;
 @dynamic createTime;
 
 @end

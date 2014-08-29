@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString * theme;
 @property (nonatomic, retain) NSNumber * isRemind;
 @property (nonatomic, retain) NSNumber * isHighlight;
-@property (nonatomic, retain) NSString * order;
+@property (nonatomic, retain) NSString * memoOrder;
 @property (nonatomic, retain) NSString * createTime;
 
 @end

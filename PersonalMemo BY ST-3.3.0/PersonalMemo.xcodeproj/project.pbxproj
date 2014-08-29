@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0402713819ADA12200879225 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 0402713719ADA12200879225 /* 10.png */; };
+		0402713A19ADA49900879225 /* 盖章的信鸽.png in Resources */ = {isa = PBXBuildFile; fileRef = 0402713919ADA49900879225 /* 盖章的信鸽.png */; };
+		0402713C19ADA49E00879225 /* 信鸽.png in Resources */ = {isa = PBXBuildFile; fileRef = 0402713B19ADA49E00879225 /* 信鸽.png */; };
+		0402713F19ADA7D400879225 /* MemoXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0402713E19ADA7D400879225 /* MemoXMLParser.m */; };
+		522D2D6019AF073700AD3F6A /* 1-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D5C19AF073700AD3F6A /* 1-4.png */; };
+		522D2D6119AF073700AD3F6A /* 1-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D5D19AF073700AD3F6A /* 1-3.png */; };
+		522D2D6219AF073700AD3F6A /* 1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D5E19AF073700AD3F6A /* 1-2.png */; };
+		522D2D6319AF073700AD3F6A /* 1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D5F19AF073700AD3F6A /* 1-1.png */; };
+		522D2D6619AF16FC00AD3F6A /* STMemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 522D2D6519AF16FC00AD3F6A /* STMemo.m */; };
+		522D2D6819AF1C4100AD3F6A /* ljt1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D6719AF1C4100AD3F6A /* ljt1-1.png */; };
+		522D2D6A19AF1C5300AD3F6A /* ljt2-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 522D2D6919AF1C5300AD3F6A /* ljt2-2.png */; };
 		703BBC1B1973DBC200C6F251 /* STMemoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 703BBC1A1973DBC200C6F251 /* STMemoDisplayViewController.m */; };
 		703BBC1E1973DD5000C6F251 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 703BBC1D1973DD5000C6F251 /* Theme.m */; };
 		70A10762196E66E500EA4963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70A10761196E66E500EA4963 /* Foundation.framework */; };
@@ -35,10 +46,10 @@
 		70BC7E2719AB2DDF0076CD2E /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1319AB2DDF0076CD2E /* 6.png */; };
 		70BC7E2819AB2DDF0076CD2E /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1419AB2DDF0076CD2E /* 7.png */; };
 		70BC7E2919AB2DDF0076CD2E /* 1 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1619AB2DDF0076CD2E /* 1 (1).png */; };
-		70BC7E2A19AB2DDF0076CD2E /* 1 (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1719AB2DDF0076CD2E /* 1 (2).png */; };
-		70BC7E2B19AB2DDF0076CD2E /* 1 (3).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1819AB2DDF0076CD2E /* 1 (3).png */; };
-		70BC7E2C19AB2DDF0076CD2E /* 1 (4).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1919AB2DDF0076CD2E /* 1 (4).png */; };
-		70BC7E2D19AB2DDF0076CD2E /* 1 (5).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1A19AB2DDF0076CD2E /* 1 (5).png */; };
+		70BC7E2A19AB2DDF0076CD2E /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1719AB2DDF0076CD2E /* 11.png */; };
+		70BC7E2B19AB2DDF0076CD2E /* 12.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1819AB2DDF0076CD2E /* 12.png */; };
+		70BC7E2C19AB2DDF0076CD2E /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1919AB2DDF0076CD2E /* 13.png */; };
+		70BC7E2D19AB2DDF0076CD2E /* 14.png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1A19AB2DDF0076CD2E /* 14.png */; };
 		70BC7E2E19AB2DDF0076CD2E /* 1 (6).png in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1B19AB2DDF0076CD2E /* 1 (6).png */; };
 		70BC7E2F19AB2DDF0076CD2E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1D19AB2DDF0076CD2E /* 1.jpg */; };
 		70BC7E3019AB2DDF0076CD2E /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 70BC7E1E19AB2DDF0076CD2E /* 2.jpg */; };
@@ -60,6 +71,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0402713719ADA12200879225 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
+		0402713919ADA49900879225 /* 盖章的信鸽.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "盖章的信鸽.png"; sourceTree = "<group>"; };
+		0402713B19ADA49E00879225 /* 信鸽.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "信鸽.png"; sourceTree = "<group>"; };
+		0402713D19ADA7D400879225 /* MemoXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoXMLParser.h; sourceTree = "<group>"; };
+		0402713E19ADA7D400879225 /* MemoXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoXMLParser.m; sourceTree = "<group>"; };
+		522D2D5C19AF073700AD3F6A /* 1-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-4.png"; sourceTree = "<group>"; };
+		522D2D5D19AF073700AD3F6A /* 1-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-3.png"; sourceTree = "<group>"; };
+		522D2D5E19AF073700AD3F6A /* 1-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-2.png"; sourceTree = "<group>"; };
+		522D2D5F19AF073700AD3F6A /* 1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1-1.png"; sourceTree = "<group>"; };
+		522D2D6419AF16FC00AD3F6A /* STMemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMemo.h; sourceTree = "<group>"; };
+		522D2D6519AF16FC00AD3F6A /* STMemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMemo.m; sourceTree = "<group>"; };
+		522D2D6719AF1C4100AD3F6A /* ljt1-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ljt1-1.png"; sourceTree = "<group>"; };
+		522D2D6919AF1C5300AD3F6A /* ljt2-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ljt2-2.png"; sourceTree = "<group>"; };
 		703BBC191973DBC200C6F251 /* STMemoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STMemoDisplayViewController.h; sourceTree = "<group>"; };
 		703BBC1A1973DBC200C6F251 /* STMemoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STMemoDisplayViewController.m; sourceTree = "<group>"; };
 		703BBC1C1973DD5000C6F251 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Theme.h; path = ../Theme.h; sourceTree = "<group>"; };
@@ -95,10 +119,10 @@
 		70BC7E1319AB2DDF0076CD2E /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 		70BC7E1419AB2DDF0076CD2E /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
 		70BC7E1619AB2DDF0076CD2E /* 1 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (1).png"; sourceTree = "<group>"; };
-		70BC7E1719AB2DDF0076CD2E /* 1 (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (2).png"; sourceTree = "<group>"; };
-		70BC7E1819AB2DDF0076CD2E /* 1 (3).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (3).png"; sourceTree = "<group>"; };
-		70BC7E1919AB2DDF0076CD2E /* 1 (4).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (4).png"; sourceTree = "<group>"; };
-		70BC7E1A19AB2DDF0076CD2E /* 1 (5).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (5).png"; sourceTree = "<group>"; };
+		70BC7E1719AB2DDF0076CD2E /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
+		70BC7E1819AB2DDF0076CD2E /* 12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 12.png; sourceTree = "<group>"; };
+		70BC7E1919AB2DDF0076CD2E /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
+		70BC7E1A19AB2DDF0076CD2E /* 14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 14.png; sourceTree = "<group>"; };
 		70BC7E1B19AB2DDF0076CD2E /* 1 (6).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1 (6).png"; sourceTree = "<group>"; };
 		70BC7E1D19AB2DDF0076CD2E /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		70BC7E1E19AB2DDF0076CD2E /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
@@ -216,6 +240,8 @@
 				70A10796196E66F300EA4963 /* Storyboard.storyboard */,
 				703BBC191973DBC200C6F251 /* STMemoDisplayViewController.h */,
 				703BBC1A1973DBC200C6F251 /* STMemoDisplayViewController.m */,
+				522D2D6419AF16FC00AD3F6A /* STMemo.h */,
+				522D2D6519AF16FC00AD3F6A /* STMemo.m */,
 				70A10798196E670400EA4963 /* entity.xcdatamodeld */,
 			);
 			name = "Configuration Files";
@@ -237,6 +263,8 @@
 				703BBC1D1973DD5000C6F251 /* Theme.m */,
 				70A107A4196E770A00EA4963 /* Memo.h */,
 				70A107A5196E770A00EA4963 /* Memo.m */,
+				0402713D19ADA7D400879225 /* MemoXMLParser.h */,
+				0402713E19ADA7D400879225 /* MemoXMLParser.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -244,10 +272,19 @@
 		70BC7E0D19AB2DDF0076CD2E /* 未命名文件夹 */ = {
 			isa = PBXGroup;
 			children = (
+				522D2D6919AF1C5300AD3F6A /* ljt2-2.png */,
+				522D2D6719AF1C4100AD3F6A /* ljt1-1.png */,
+				522D2D5C19AF073700AD3F6A /* 1-4.png */,
+				522D2D5D19AF073700AD3F6A /* 1-3.png */,
+				522D2D5E19AF073700AD3F6A /* 1-2.png */,
+				522D2D5F19AF073700AD3F6A /* 1-1.png */,
 				70BC7E3419AC4FE40076CD2E /* ljt2.png */,
 				70BC7E3519AC4FE40076CD2E /* ljt1.png */,
+				0402713919ADA49900879225 /* 盖章的信鸽.png */,
+				0402713B19ADA49E00879225 /* 信鸽.png */,
 				70BC7E0E19AB2DDF0076CD2E /* 1.png */,
 				70BC7E0F19AB2DDF0076CD2E /* 2.png */,
+				0402713719ADA12200879225 /* 10.png */,
 				70BC7E1019AB2DDF0076CD2E /* 3.png */,
 				70BC7E1119AB2DDF0076CD2E /* 4.png */,
 				70BC7E1219AB2DDF0076CD2E /* 5.png */,
@@ -264,10 +301,10 @@
 			isa = PBXGroup;
 			children = (
 				70BC7E1619AB2DDF0076CD2E /* 1 (1).png */,
-				70BC7E1719AB2DDF0076CD2E /* 1 (2).png */,
-				70BC7E1819AB2DDF0076CD2E /* 1 (3).png */,
-				70BC7E1919AB2DDF0076CD2E /* 1 (4).png */,
-				70BC7E1A19AB2DDF0076CD2E /* 1 (5).png */,
+				70BC7E1719AB2DDF0076CD2E /* 11.png */,
+				70BC7E1819AB2DDF0076CD2E /* 12.png */,
+				70BC7E1919AB2DDF0076CD2E /* 13.png */,
+				70BC7E1A19AB2DDF0076CD2E /* 14.png */,
 				70BC7E1B19AB2DDF0076CD2E /* 1 (6).png */,
 			);
 			path = "左抽屉";
@@ -363,26 +400,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70BC7E2C19AB2DDF0076CD2E /* 1 (4).png in Resources */,
+				0402713819ADA12200879225 /* 10.png in Resources */,
+				522D2D6219AF073700AD3F6A /* 1-2.png in Resources */,
+				70BC7E2C19AB2DDF0076CD2E /* 13.png in Resources */,
 				70A1076E196E66E500EA4963 /* InfoPlist.strings in Resources */,
 				70BC7E2519AB2DDF0076CD2E /* 4.png in Resources */,
 				70BC7E2219AB2DDF0076CD2E /* 1.png in Resources */,
 				70BC7E2F19AB2DDF0076CD2E /* 1.jpg in Resources */,
 				70BC7E2E19AB2DDF0076CD2E /* 1 (6).png in Resources */,
 				70BC7E2719AB2DDF0076CD2E /* 6.png in Resources */,
-				70BC7E2B19AB2DDF0076CD2E /* 1 (3).png in Resources */,
+				70BC7E2B19AB2DDF0076CD2E /* 12.png in Resources */,
 				70BC7E3219AB2DDF0076CD2E /* 4.jpg in Resources */,
-				70BC7E2A19AB2DDF0076CD2E /* 1 (2).png in Resources */,
+				70BC7E2A19AB2DDF0076CD2E /* 11.png in Resources */,
 				70BC7E2319AB2DDF0076CD2E /* 2.png in Resources */,
 				70BC7E2419AB2DDF0076CD2E /* 3.png in Resources */,
+				0402713C19ADA49E00879225 /* 信鸽.png in Resources */,
 				70BC7E2619AB2DDF0076CD2E /* 5.png in Resources */,
 				70BC7E3019AB2DDF0076CD2E /* 2.jpg in Resources */,
-				70BC7E2D19AB2DDF0076CD2E /* 1 (5).png in Resources */,
+				0402713A19ADA49900879225 /* 盖章的信鸽.png in Resources */,
+				70BC7E2D19AB2DDF0076CD2E /* 14.png in Resources */,
 				70BC7E3319AB2DDF0076CD2E /* bg.png in Resources */,
+				522D2D6119AF073700AD3F6A /* 1-3.png in Resources */,
+				522D2D6319AF073700AD3F6A /* 1-1.png in Resources */,
 				70BC7E2819AB2DDF0076CD2E /* 7.png in Resources */,
 				70BC7E3619AC4FE40076CD2E /* ljt2.png in Resources */,
+				522D2D6A19AF1C5300AD3F6A /* ljt2-2.png in Resources */,
+				522D2D6019AF073700AD3F6A /* 1-4.png in Resources */,
 				70A10779196E66E500EA4963 /* Images.xcassets in Resources */,
 				70BC7E2919AB2DDF0076CD2E /* 1 (1).png in Resources */,
+				522D2D6819AF1C4100AD3F6A /* ljt1-1.png in Resources */,
 				70BC7E3119AB2DDF0076CD2E /* 3.jpg in Resources */,
 				70BC7E3719AC4FE40076CD2E /* ljt1.png in Resources */,
 				70A10797196E66F300EA4963 /* Storyboard.storyboard in Resources */,
@@ -410,6 +456,8 @@
 				70A1079A196E670400EA4963 /* entity.xcdatamodeld in Sources */,
 				70A10770196E66E500EA4963 /* main.m in Sources */,
 				70A10774196E66E500EA4963 /* STAppDelegate.m in Sources */,
+				522D2D6619AF16FC00AD3F6A /* STMemo.m in Sources */,
+				0402713F19ADA7D400879225 /* MemoXMLParser.m in Sources */,
 				70A107A3196E68B600EA4963 /* STCreatePersonalMemoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
