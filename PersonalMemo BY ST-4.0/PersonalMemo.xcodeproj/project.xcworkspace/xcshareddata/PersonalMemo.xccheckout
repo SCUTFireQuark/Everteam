@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>62193765-8EBB-433C-BC31-667FC281FCAE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PersonalMemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8E99B8DE-5389-4F2A-B768-E97B644BA508</key>
+		<string>https://github.com/SCUTFireQuark/Everteam.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PersonalMemo BY ST-4.0/PersonalMemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8E99B8DE-5389-4F2A-B768-E97B644BA508</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/SCUTFireQuark/Everteam.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8E99B8DE-5389-4F2A-B768-E97B644BA508</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8E99B8DE-5389-4F2A-B768-E97B644BA508</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Everteam</string>
+		</dict>
+	</array>
+</dict>
+</plist>
