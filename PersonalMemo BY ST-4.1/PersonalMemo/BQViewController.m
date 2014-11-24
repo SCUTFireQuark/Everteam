@@ -25,15 +25,22 @@
 @property(strong, nonatomic) BQMemoView *memoViewToDelete;
 @property(strong, nonatomic) UIDatePicker *remindTimeDatePicker;
 
-@property(nonatomic) BOOL pressDown;
+@property(strong, nonatomic) BQMemoModel *memoModel;
 
-#define SUMMARY_HEIGHT 30
-#define DETAIL_HEIGHT 30
-#define IV_HEIGHT 90
+@property(nonatomic) BOOL pressDown;
+@property(nonatomic) int height;
 
 @end
 
 @implementation BQViewController
+
+- (BQMemoModel *)memoModel
+{
+    if (_memoModel == nil) {
+        _memoModel = [[BQMemoModel alloc] init];
+    }
+    return _memoModel;
+}
 
 - (BQMemoBoard *)memoBoard
 {
@@ -78,7 +85,11 @@
 - (UIDatePicker *)remindTimeDatePicker
 {
     if (_remindTimeDatePicker == nil) {
-        _remindTimeDatePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 580, 320, 150)];
+        NSNumber *x = [self.memoModel.timePicker objectForKey:@"x"];
+        NSNumber *y = [self.memoModel.timePicker objectForKey:@"y"];
+        NSNumber *width = [self.memoModel.timePicker objectForKey:@"width"];
+        NSNumber *height = [self.memoModel.timePicker objectForKey:@"height"];
+        _remindTimeDatePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake([x intValue], [y intValue], [width intValue], [height intValue])];
         _remindTimeDatePicker.backgroundColor=[UIColor whiteColor];
     }
     return _remindTimeDatePicker;
@@ -94,7 +105,11 @@
     [self loadThemeView];
     [self loadMemoView];
 
-    self.themeCreateView = [[BQThemeCreationView alloc] initWithFrame:CGRectMake(50, 175, 225, 170)];
+    NSNumber *cx = [self.memoModel.themeCreateView objectForKey:@"x"];
+    NSNumber *cy = [self.memoModel.themeCreateView objectForKey:@"y"];
+    NSNumber *cwidth = [self.memoModel.themeCreateView objectForKey:@"width"];
+    NSNumber *cheight = [self.memoModel.themeCreateView objectForKey:@"height"];
+    self.themeCreateView = [[BQThemeCreationView alloc] initWithFrame:CGRectMake([cx intValue], [cy intValue], [cwidth intValue], [cheight intValue])];
     [self.themeCreateView.confirmBtn addTarget:self action:@selector(onConfirmBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.themeCreateView.cancelBtn addTarget:self action:@selector(onCancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -119,10 +134,26 @@
     [self.themeButtonArray removeAllObjects];
     [self.themeDeleteButtonArray removeAllObjects];
     
+    NSNumber *x = [self.memoModel.themeBtn objectForKey:@"x"];
+    NSNumber *y = [self.memoModel.themeBtn objectForKey:@"y"];
+    NSNumber *width = [self.memoModel.themeBtn objectForKey:@"width"];
+    NSNumber *height = [self.memoModel.themeBtn objectForKey:@"height"];
+    NSNumber *shift = [self.memoModel.themeBtn objectForKey:@"shift"];
+    
+    NSNumber *dx = [self.memoModel.themeDeleteBtn objectForKey:@"x"];
+    NSNumber *dy = [self.memoModel.themeDeleteBtn objectForKey:@"y"];
+    NSNumber *dwidth = [self.memoModel.themeDeleteBtn objectForKey:@"width"];
+    NSNumber *dheight = [self.memoModel.themeDeleteBtn objectForKey:@"height"];
+    
+    NSNumber *cx = [self.memoModel.themeCreateBtn objectForKey:@"x"];
+    NSNumber *cy = [self.memoModel.themeCreateBtn objectForKey:@"y"];
+    NSNumber *cwidth = [self.memoModel.themeCreateBtn objectForKey:@"width"];
+    NSNumber *cheight = [self.memoModel.themeCreateBtn objectForKey:@"height"];
+        
     //绘制主题界面
     for (int i=0; i<self.memoBoard.themeArray.count; i++) {
         
-        UIButton *themeButton = [[UIButton alloc]initWithFrame:CGRectMake(3, i*60+10, 50, 50)];
+        UIButton *themeButton = [[UIButton alloc]initWithFrame:CGRectMake([x intValue], i * [y intValue] + [shift intValue], [width intValue], [height intValue])];
         //设置图片
         NSString *name = [NSString stringWithFormat:@"1%d.png",1+arc4random()%4];
         [themeButton setBackgroundImage:[UIImage imageNamed:name] forState:UIControlStateNormal];
@@ -131,6 +162,7 @@
         
         [themeButton setTitle:theme.name forState:UIControlStateNormal];
         [self.themePanelView addSubview:themeButton];
+        
         [themeButton addTarget:self action:@selector(switchThemeClick:) forControlEvents:UIControlEventTouchUpInside];
         themeButton.tag = i;
         [self.themeButtonArray addObject:themeButton];
@@ -139,7 +171,7 @@
         UIButton *deletebtn = [UIButton buttonWithType:UIButtonTypeCustom];
         deletebtn.backgroundColor = [UIColor whiteColor];
         
-        deletebtn.frame = CGRectMake(5, 0, 10,10);
+        deletebtn.frame = CGRectMake([dx intValue], [dy intValue], [dwidth intValue], [dheight intValue]);
         [deletebtn setTitle:@"X" forState:UIControlStateNormal];
         [deletebtn setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
         //添加删除操作
@@ -160,14 +192,18 @@
     
     [self.themeDeleteButtonArray[0] removeFromSuperview];
     
-    self.themeCreateButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, 25, 25)];
+    self.themeCreateButton = [[UIButton alloc]initWithFrame:CGRectMake([cx intValue], [cy intValue], [cwidth intValue], [cheight intValue])];
     [self.themeCreateButton setBackgroundImage:[UIImage imageNamed:@"1 (1).png"] forState:UIControlStateNormal];
     [self.themeCreateButton addTarget:self action:@selector(onCreateThemeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.themePanelView addSubview:self.themeCreateButton];
     
     //绘制便签界面
+    NSNumber *bx = [self.memoModel.backgroundSize objectForKey:@"x"];
+    NSNumber *by = [self.memoModel.backgroundSize objectForKey:@"y"];
+    NSNumber *bwidth = [self.memoModel.backgroundSize objectForKey:@"width"];
+    NSNumber *bheight = [self.memoModel.backgroundSize objectForKey:@"height"];
     UIImageView *background = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg.png"]];
-    background.frame = CGRectMake(0, 0, 320, 568);
+    background.frame = CGRectMake([bx intValue], [by intValue], [bwidth intValue], [bheight intValue]);
     [self.view addSubview:background];
     [self.view insertSubview:background atIndex:0];
 }
@@ -181,9 +217,18 @@
     }
     self.memoPanelView.contentSize = CGSizeMake(0, 160*self.memoBoard.memoArray.count+20);
     
+    NSDictionary *imageView = [self.memoModel.normalState objectForKey:@"imageView"];
+    NSNumber *x = [imageView objectForKey:@"x"];
+    NSNumber *y = [imageView objectForKey:@"y"];
+    NSNumber *width = [imageView objectForKey:@"width"];
+    NSNumber *height = [imageView objectForKey:@"height"];
+    NSNumber *shift = [imageView objectForKey:@"shift"];
+    self.height = [height intValue];
+
     for (int i=0; i<self.memoBoard.memoArray.count; i++) {
         //一条便签
-        BQMemoView* memoView = [[BQMemoView alloc]initWithFrame:CGRectMake(30,i*100+10, 270, 90)];
+        BQMemoView* memoView = [[BQMemoView alloc]initWithFrame:CGRectMake([x intValue],i*[y intValue] + [shift intValue], [width intValue], [height intValue])];
+        [memoView initSizeWithDictionaryForNormalState:self.memoModel.normalState andEditState:self.memoModel.editState];
         BQMemo *memo = [self.memoBoard.memoArray objectAtIndex:i];
         
         memoView.tag =[memo.memoOrder intValue];
@@ -288,7 +333,7 @@
     int from;
     int to;
     
-    if(((BQMemoView *)(sender.view)).frame.size.height == 90){
+    if(((BQMemoView *)(sender.view)).frame.size.height == self.height){
         //取到长按的那一条标签
         BQMemoView *dragView = (BQMemoView *)sender.view;
         //记录手指移动到得点得坐标
@@ -361,8 +406,15 @@
 - (void)createMemoAction
 {
     self.pressDown = YES;
+    NSDictionary *imageView = [self.memoModel.normalState objectForKey:@"imageView"];
+    NSNumber *x = [imageView objectForKey:@"x"];
+    NSNumber *width = [imageView objectForKey:@"width"];
+    NSNumber *height = [imageView objectForKey:@"createHeight"];
+    NSNumber *shift = [imageView objectForKey:@"shift"];
+
+    BQMemoView *memoView = [[BQMemoView alloc] initWithFrame:CGRectMake([x intValue], [shift intValue], [width intValue], [height intValue])];
+    [memoView initSizeWithDictionaryForNormalState:self.memoModel.normalState andEditState:self.memoModel.editState];
     
-    BQMemoView *memoView = [[BQMemoView alloc] initWithFrame:CGRectMake(30, 10, 270, 290)];
     [memoView changeMemoState];
     [self.memoPanelView addSubview:memoView];
     [memoView.pigeon addTarget:self action:@selector(onSendMemoClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -381,24 +433,34 @@
 
 - (void)completeCreateMemo:(UIButton *)sender
 {
-    //判断是否相同
+    NSString *summaryTooLong = [self.memoModel.completeAlert objectForKey:@"summaryTooLong"];
+    NSString *summaryTooShort = [self.memoModel.completeAlert objectForKey:@"summaryTooShort"];
+    NSString *summaryDuplicate = [self.memoModel.completeAlert objectForKey:@"summaryDuplicate"];
+    NSString *detailTooLong = [self.memoModel.completeAlert objectForKey:@"detailTooLong"];
+    NSString *message = [self.memoModel.completeAlert objectForKey:@"message"];
+    NSString *cancel = [self.memoModel.completeAlert objectForKey:@"cancel"];
+    
+    NSNumber *longestSummary = [self.memoModel.completeAlert objectForKey:@"longestSummary"];
+    NSNumber *shortestSummary = [self.memoModel.completeAlert objectForKey:@"shortestSummary"];
+    NSNumber *longestDetail = [self.memoModel.completeAlert objectForKey:@"longestDetail"];
+    
     BQMemoView *memoView = (BQMemoView *)[sender superview];
     BOOL isSummaryDuplicate = [self.memoBoard isDataBaseContainMemoWithSummary:memoView.summaryTextField.text];
     if (isSummaryDuplicate) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题长一样了哦~" message:@"改一下嘛>_<!" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryDuplicate message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         return;
     }
     
-    if (memoView.summaryTextField.text.length == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题不填人家会桑心的~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    if (memoView.summaryTextField.text.length == [shortestSummary intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryTooShort message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         
-    } else if (memoView.summaryTextField.text.length > 14) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题太长会爆炸哒~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    } else if (memoView.summaryTextField.text.length > [longestSummary intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryTooLong message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
-    } else if (memoView.detailTextView.text.length > 200) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！内容太长就要报警了~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    } else if (memoView.detailTextView.text.length > [longestDetail intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:detailTooLong message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         
     } else {
@@ -477,9 +539,9 @@
 
         [self.memoViewArray insertObject:memoView atIndex:0];
         //下面的便签向上移位
-        CGFloat distance = IV_HEIGHT - memoView.frame.size.height;
+        CGFloat distance = self.height - memoView.frame.size.height;
 
-        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, IV_HEIGHT);
+        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, self.height);
         [self memoMovement:memoView initialFrame:memoView.frame FinalFrame:newPos];
         
         [self moveAllMemosForDistance:distance];
@@ -523,9 +585,10 @@
 //DatePick向上移动动画
 - (void)DatePickerAppear
 {
+    NSNumber *shift = [self.memoModel.timePicker objectForKey:@"shift"];
     [self.memoPanelView addSubview:self.remindTimeDatePicker];
     [self.view bringSubviewToFront:self.remindTimeDatePicker];
-    CGRect newPos = CGRectMake(self.remindTimeDatePicker.frame.origin.x, self.remindTimeDatePicker.frame.origin.y-200, self.remindTimeDatePicker.frame.size.width, self.remindTimeDatePicker.frame.size.height);
+    CGRect newPos = CGRectMake(self.remindTimeDatePicker.frame.origin.x, self.remindTimeDatePicker.frame.origin.y - [shift intValue], self.remindTimeDatePicker.frame.size.width, self.remindTimeDatePicker.frame.size.height);
     [self memoMovement:self.remindTimeDatePicker initialFrame:self.remindTimeDatePicker.frame FinalFrame:newPos];
 }
 
@@ -533,7 +596,8 @@
 - (void)DatePickerDisappear
 {
     //DatePicker下移
-    CGRect newPos = CGRectMake(self.remindTimeDatePicker.frame.origin.x, self.remindTimeDatePicker.frame.origin.y+200, self.remindTimeDatePicker.frame.size.width, self.remindTimeDatePicker.frame.size.height);
+    NSNumber *shift = [self.memoModel.timePicker objectForKey:@"shift"];
+    CGRect newPos = CGRectMake(self.remindTimeDatePicker.frame.origin.x, self.remindTimeDatePicker.frame.origin.y + [shift intValue], self.remindTimeDatePicker.frame.size.width, self.remindTimeDatePicker.frame.size.height);
     [self memoMovement:self.remindTimeDatePicker initialFrame:self.remindTimeDatePicker.frame FinalFrame:newPos];
     [self.remindTimeDatePicker removeFromSuperview];
 }
@@ -542,31 +606,42 @@
 {
     BQMemoView *memoView = (BQMemoView *)[sender superview];
     
+    NSString *summaryTooLong = [self.memoModel.completeAlert objectForKey:@"summaryTooLong"];
+    NSString *summaryTooShort = [self.memoModel.completeAlert objectForKey:@"summaryTooShort"];
+    NSString *summaryDuplicate = [self.memoModel.completeAlert objectForKey:@"summaryDuplicate"];
+    NSString *detailTooLong = [self.memoModel.completeAlert objectForKey:@"detailTooLong"];
+    NSString *message = [self.memoModel.completeAlert objectForKey:@"message"];
+    NSString *cancel = [self.memoModel.completeAlert objectForKey:@"cancel"];
+    
+    NSNumber *longestSummary = [self.memoModel.completeAlert objectForKey:@"longestSummary"];
+    NSNumber *shortestSummary = [self.memoModel.completeAlert objectForKey:@"shortestSummary"];
+    NSNumber *longestDetail = [self.memoModel.completeAlert objectForKey:@"longestDetail"];
+    
     BOOL isSummaryDuplicate = [self.memoBoard isDataBaseContainMemoWithSummary:memoView.summaryTextField.text];
     if (isSummaryDuplicate) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题长一样了哦~" message:@"改一下嘛>_<!" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryDuplicate message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         return;
     }
     
-    if (memoView.summaryTextField.text.length == 0) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题不填人家会桑心的~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    if (memoView.summaryTextField.text.length == [shortestSummary intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryTooShort message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         
-    }else if (memoView.summaryTextField.text.length > 14) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！标题太长会爆炸哒~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    } else if (memoView.summaryTextField.text.length > [longestSummary intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:summaryTooLong message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
-    }else if (memoView.detailTextView.text.length > 200) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲！内容太长就要报警了~" message:@">_<" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+    } else if (memoView.detailTextView.text.length > [longestDetail intValue]) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:detailTooLong message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [alertView show];
         
     } else {
-        NSString *memoOrder = [NSString stringWithFormat:@"%d",memoView.tag];
+        NSString *memoOrder = [NSString stringWithFormat:@"%ld",(long)memoView.tag];
         [self.memoBoard updateMemoContextWithTheme:self.memoBoard.currentTheme.name andOrder:memoOrder newSummary:memoView.summaryTextField.text newDetail:memoView.detailTextView.text];
         [memoView changeMemoState];
         
-        CGFloat distance = IV_HEIGHT - memoView.frame.size.height;
-        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, IV_HEIGHT);
+        CGFloat distance = self.height - memoView.frame.size.height;
+        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, self.height);
         [self memoMovement:memoView initialFrame:memoView.frame FinalFrame:newPos];
         
         [self moveAllMemosForDistance:distance];
@@ -584,6 +659,12 @@
 
 - (void)updateUIWithStart:(int)from andEnd:(int)to
 {
+    NSDictionary *imageView = [self.memoModel.normalState objectForKey:@"imageView"];
+    NSNumber *x = [imageView objectForKey:@"x"];
+    NSNumber *y = [imageView objectForKey:@"y"];
+    NSNumber *width = [imageView objectForKey:@"width"];
+    NSNumber *height = [imageView objectForKey:@"height"];
+    NSNumber *shift = [imageView objectForKey:@"shift"];
     for (int i=0; i<self.memoViewArray.count; i++) {
         BQMemoView *memoView = self.memoViewArray[i];
         //更新自己最新的位置
@@ -591,7 +672,7 @@
         //从iv中找到子视图summary中的text对应数据中的那一条数据
         NSString *summary = memoView.summaryLabel.text;
         
-        NSString *newOrder = [NSString stringWithFormat:@"%d",memoView.tag];
+        NSString *newOrder = [NSString stringWithFormat:@"%ld",(long)memoView.tag];
         [self.memoBoard updateMemoOrderWithTitle:summary newOrder:newOrder];
         
         if (i == to) {
@@ -600,7 +681,7 @@
         }
         
         [UIView animateWithDuration:0.3 animations:^{
-            memoView.frame = CGRectMake(30,10+i*100, 270, 90);
+            memoView.frame = CGRectMake([x intValue],i*[y intValue] + [shift intValue], [width intValue], [height intValue]);
         }];
         
     }
@@ -610,8 +691,12 @@
 //删除便签操作
 - (void)deleteMemo:(UIButton*)sender
 {
+    NSString *isDelete = [self.memoModel.deleteMemo objectForKey:@"isDelete"];
+    NSString *message = [self.memoModel.deleteMemo objectForKey:@"message"];
+    NSString *cancel = [self.memoModel.deleteMemo objectForKey:@"cancel"];
+    NSString *other = [self.memoModel.deleteMemo objectForKey:@"other"];
     self.memoViewToDelete = (BQMemoView *)sender.superview;
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"亲爱哒>_<" message:@"你要丢掉我嘛 555~" delegate:self cancelButtonTitle:@"怎么可能吶" otherButtonTitles:@"滚粗~", nil];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:isDelete message:message delegate:self cancelButtonTitle:cancel otherButtonTitles:other, nil];
     [alertView show];
     
     
@@ -630,10 +715,23 @@
     
     [self.memoViewArray removeObject:memoView];
     //初始化垃圾桶
+    
+    NSNumber *x = [self.memoModel.trash objectForKey:@"x"];
+    NSNumber *y = [self.memoModel.trash objectForKey:@"y"];
+    NSNumber *width = [self.memoModel.trash objectForKey:@"width"];
+    NSNumber *height = [self.memoModel.trash objectForKey:@"height"];
+    NSNumber *move1 = [self.memoModel.trash objectForKey:@"move1"];
+    NSNumber *move2 = [self.memoModel.trash objectForKey:@"move2"];
+    
+    NSNumber *x2 = [self.memoModel.moveToTrash objectForKey:@"x"];
+    NSNumber *y2 = [self.memoModel.moveToTrash objectForKey:@"y"];
+    NSNumber *width2 = [self.memoModel.moveToTrash objectForKey:@"width"];
+    NSNumber *height2 = [self.memoModel.moveToTrash objectForKey:@"height"];
+    
     UIImageView *trash1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ljt1-1.png"]];
     UIImageView *trash2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ljt2-2.png"]];
-    trash1.frame = CGRectMake(10, 568, 300,150 );
-    trash2.frame = CGRectMake(10, 568, 300,150 );
+    trash1.frame = CGRectMake([x intValue], [y intValue], [width intValue], [height intValue]);
+    trash2.frame = CGRectMake([x intValue], [y intValue], [width intValue], [height intValue]);
     [self.memoPanelView addSubview:trash1];
     [self.memoPanelView addSubview:trash2];
     [self.memoPanelView bringSubviewToFront:trash1];
@@ -642,8 +740,8 @@
     
     [UIView animateWithDuration:1 animations:^{
         //垃圾桶出来
-        trash1.center = CGPointMake(trash1.center.x, 500);
-        trash2.center = CGPointMake(trash2.center.x, 500);
+        trash1.center = CGPointMake(trash1.center.x, [move1 intValue]);
+        trash2.center = CGPointMake(trash2.center.x, [move1 intValue]);
         
     } completion:^(BOOL finished) {
         //字不要了
@@ -656,14 +754,14 @@
         [UIView animateWithDuration:1.5 animations:^{
             //纸掉下去
             //的同时大小改变
-            memoView.frame = CGRectMake(memoView.frame.origin.x+100, 600, 30, 30);
+            memoView.frame = CGRectMake(memoView.frame.origin.x + [x2 intValue], [y2 intValue], [width2 intValue], [height2 intValue]);
             
         } completion:^(BOOL finished) {
             [memoView removeFromSuperview];
             [UIView animateWithDuration:1.5 animations:^{
                 //垃圾桶上来
-                trash1.center = CGPointMake(trash1.center.x, 700);
-                trash2.center = CGPointMake(trash2.center.x, 700);
+                trash1.center = CGPointMake(trash1.center.x, [move2 intValue]);
+                trash2.center = CGPointMake(trash2.center.x, [move2 intValue]);
                 //其余的纸正确排队
                 
                 
@@ -741,8 +839,19 @@
 
 - (void)createTheme
 {
-    if (self.memoBoard.themeArray.count == 6) {
-        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"亲！我只容得下六个主题~" message:@"先整理一下嘛>_<!" delegate:self cancelButtonTitle:@"听你的~" otherButtonTitles: nil];
+    NSString *themeTooLong = [self.memoModel.createThemeAlert objectForKey:@"themeTooLong"];
+    NSString *themeTooMany = [self.memoModel.createThemeAlert objectForKey:@"themeTooMany"];
+    NSString *themeTooShort = [self.memoModel.createThemeAlert objectForKey:@"themeTooShort"];
+    NSString *themeDuplicate = [self.memoModel.createThemeAlert objectForKey:@"themeDuplicate"];
+    NSString *message = [self.memoModel.createThemeAlert objectForKey:@"message"];
+    NSString *cancel = [self.memoModel.createThemeAlert objectForKey:@"cancel"];
+    
+    NSNumber *longestTheme = [self.memoModel.createThemeAlert objectForKey:@"longestTheme"];
+    NSNumber *shortestTheme = [self.memoModel.createThemeAlert objectForKey:@"shortestTheme"];
+    NSString *themeLimit = [self.memoModel.createThemeAlert objectForKey:@"themeLimit"];
+
+    if (self.memoBoard.themeArray.count == [themeLimit intValue]) {
+        UIAlertView *av = [[UIAlertView alloc]initWithTitle:themeTooMany message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [av show];
         return;
     }
@@ -750,19 +859,19 @@
     for (BQTheme *theme in self.memoBoard.themeArray) {
         NSString * themeName = theme.name;
         if ([themeName isEqualToString:self.themeCreateView.textField.text]) {
-            UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"亲！主题重复了哦~" message:@"改一下嘛>_<!" delegate:self cancelButtonTitle:@"呵呵~" otherButtonTitles: nil];
+            UIAlertView *av = [[UIAlertView alloc]initWithTitle:themeDuplicate message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
             [av show];
             return;
         }
     }
     
     //限制主题字数
-    if (self.themeCreateView.textField.text.length == 0) {
-        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"矮油，主题填点东西啦~" message:@">_<" delegate:self cancelButtonTitle:@"好哒~" otherButtonTitles: nil];
+    if (self.themeCreateView.textField.text.length == [shortestTheme intValue]) {
+        UIAlertView *av = [[UIAlertView alloc]initWithTitle:themeTooShort message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [av show];
         
-    }else if (self.themeCreateView.textField.text.length > 2) {
-        UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"雅蠛蝶，你好暴力，填两个字就行啦~" message:@">_<" delegate:self cancelButtonTitle:@"辣我温油一点~" otherButtonTitles: nil];
+    }else if (self.themeCreateView.textField.text.length > [longestTheme intValue]) {
+        UIAlertView *av = [[UIAlertView alloc]initWithTitle:themeTooLong message:message delegate:self cancelButtonTitle:cancel otherButtonTitles: nil];
         [av show];
     }else {
         //存进数据库
@@ -849,8 +958,8 @@
     CGSize detailSize = [detail boundingRectWithSize:CGSizeMake(250,0) options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute2 context:nil].size;
     CGSize titleSize = CGSizeMake(detailSize.width,summarySize.height+detailSize.height+25);
     
-    if (memoView.frame.size.height == 90) {
-        if (titleSize.height < 90 + 60) titleSize.height = 90 + 60;
+    if (memoView.frame.size.height == self.height) {
+        if (titleSize.height < self.height + 60) titleSize.height = self.height + 60;
         else titleSize.height += 60;
         CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, titleSize.height);
         [self memoMovement:memoView initialFrame:memoView.frame FinalFrame:newPos];
@@ -873,35 +982,46 @@
         [self memoMovement:memoView.createTimeLabel initialFrame:memoView.createTimeLabel.frame FinalFrame:newPos];
         
         
-        [self.memoPanelView setContentSize:CGSizeMake(self.memoPanelView.contentSize.width, self.memoPanelView.contentSize.height+titleSize.height-90)];
+        [self.memoPanelView setContentSize:CGSizeMake(self.memoPanelView.contentSize.width, self.memoPanelView.contentSize.height+titleSize.height-self.height)];
         
         for (BQMemoView *memo in self.memoViewArray) {
             if (memo.frame.origin.y > memoView.frame.origin.y) {
-                newPos = CGRectMake(memo.frame.origin.x, memo.frame.origin.y+titleSize.height-90, memo.frame.size.width, memo.frame.size.height);
+                newPos = CGRectMake(memo.frame.origin.x, memo.frame.origin.y+titleSize.height-self.height, memo.frame.size.width, memo.frame.size.height);
                 [self memoMovement:memo initialFrame:memo.frame FinalFrame:newPos];
             }
         }
         
     } else{
-        CGFloat shrink = memoView.frame.size.height - 90;
+        CGFloat shrink = memoView.frame.size.height - self.height;
         
-        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, 90);
+        CGRect newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, self.height);
         [self memoMovement:memoView initialFrame:memoView.frame FinalFrame:newPos];
         
-        newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, 90);
+        newPos = CGRectMake(memoView.frame.origin.x, memoView.frame.origin.y, memoView.frame.size.width, self.height);
         [self memoMovement:memoView initialFrame:memoView.frame FinalFrame:newPos];
         
-        newPos = CGRectMake(memoView.summaryLabel.frame.origin.x, memoView.summaryLabel.frame.origin.y, memoView.summaryLabel.frame.size.width, SUMMARY_HEIGHT);
+        NSDictionary *temp = [self.memoModel.normalState objectForKey:@"summary"];
+        NSNumber *sumHeight = [temp objectForKey:@"height"];
+        
+        newPos = CGRectMake(memoView.summaryLabel.frame.origin.x, memoView.summaryLabel.frame.origin.y, memoView.summaryLabel.frame.size.width, [sumHeight intValue]);
         [self memoMovement:memoView.detailLabel initialFrame:memoView.detailLabel.frame FinalFrame:newPos];
         [memoView.detailLabel setHidden:YES];
-        newPos = CGRectMake(memoView.detailLabel.frame.origin.x, 45, memoView.detailLabel.frame.size.width, DETAIL_HEIGHT);
+        
+        temp = [self.memoModel.normalState objectForKey:@"detail"];
+        NSNumber *detHeight = [temp objectForKey:@"height"];
+        NSNumber *detY = [temp objectForKey:@"y"];
+        newPos = CGRectMake(memoView.detailLabel.frame.origin.x, [detY intValue], memoView.detailLabel.frame.size.width, [detHeight intValue]);
         [self memoMovementWithAnimation:memoView.detailLabel initialFrame:memoView.detailLabel.frame FinalFrame:newPos];
         
-        newPos = CGRectMake(memoView.remindTimeLabel.frame.origin.x, 70, memoView.remindTimeLabel.frame.size.width, memoView.remindTimeLabel.frame.size.height);
+        temp = [self.memoModel.normalState objectForKey:@"remindTime"];
+        detY = [temp objectForKey:@"y"];
+        newPos = CGRectMake(memoView.remindTimeLabel.frame.origin.x, [detY intValue], memoView.remindTimeLabel.frame.size.width, memoView.remindTimeLabel.frame.size.height);
         
         [self memoMovement:memoView.remindTimeLabel initialFrame:memoView.remindTimeLabel.frame FinalFrame:newPos];
         
-        newPos = CGRectMake(memoView.createTimeLabel.frame.origin.x, 70, memoView.createTimeLabel.frame.size.width, memoView.createTimeLabel.frame.size.height);
+        temp = [self.memoModel.normalState objectForKey:@"createTime"];
+        detY = [temp objectForKey:@"y"];
+        newPos = CGRectMake(memoView.createTimeLabel.frame.origin.x, [detY intValue], memoView.createTimeLabel.frame.size.width, memoView.createTimeLabel.frame.size.height);
         [self memoMovement:memoView.createTimeLabel initialFrame:memoView.createTimeLabel.frame FinalFrame:newPos];
         
         [self.memoPanelView setContentSize:CGSizeMake(self.memoPanelView.contentSize.width, self.memoPanelView.contentSize.height-shrink)];
@@ -920,7 +1040,7 @@
 
 - (IBAction)removeThemeAction:(UIButton *)sender
 {
-    for (int i=sender.tag; i<= self.themeButtonArray.count; i++) {
+    for (NSInteger i = sender.tag; i <= self.themeButtonArray.count; i++) {
         if (i == sender.tag) {
             //UI删除操作
             UIButton *themeButtonToDelete = [self.themeButtonArray objectAtIndex:i];
@@ -943,7 +1063,10 @@
             UIButton* themeDeleteButton = [self.themeDeleteButtonArray objectAtIndex:i-1];
             themeButton.tag = themeButton.tag - 1;
             themeDeleteButton.tag = themeDeleteButton.tag - 1;
-            CGRect newPos = CGRectMake(3, 10+(i-1)*60, themeButton.frame.size.width,themeButton.frame.size.height);
+            NSNumber *x = [self.memoModel.themeBtn objectForKey:@"x"];
+            NSNumber *y = [self.memoModel.themeBtn objectForKey:@"y"];
+            NSNumber *shift = [self.memoModel.themeBtn objectForKey:@"shift"];
+            CGRect newPos = CGRectMake([x intValue], [shift intValue] + (i-1) * [y intValue], themeButton.frame.size.width,themeButton.frame.size.height);
             [self memoMovement:themeButton initialFrame:themeButton.frame FinalFrame:newPos];
         }
     }

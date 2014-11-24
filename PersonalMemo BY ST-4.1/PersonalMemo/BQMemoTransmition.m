@@ -77,7 +77,7 @@ forHTTPHeaderField:@"Content-type"];
     
     
     NSData *postData=[postString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *msgLength = [NSString stringWithFormat:@"%d",[postString length]];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu",(unsigned long)[postString length]];
     [req addValue:@"application/x-www-form-urlencoded"
 forHTTPHeaderField:@"Content-type"];
     
@@ -129,7 +129,7 @@ forHTTPHeaderField:@"Content-type"];
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData: jsonData options:
                         NSJSONReadingAllowFragments error:nil];
     self.memoList = [dict objectForKey:@"Memo"];
-    NSLog(@"memolist.count:%d",self.memoList.count);
+    NSLog(@"memolist.count:%lu",(unsigned long)self.memoList.count);
     NSMutableDictionary *memo = [self.memoList objectAtIndex:0];
     NSString *summary = [[NSString alloc] init];
     NSString *details = [[NSString alloc] init];

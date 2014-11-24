@@ -100,7 +100,7 @@
         if ([memo.theme isEqualToString:self.currentTheme.name]){
             NSInteger order = [memo.memoOrder intValue];
             order++;
-            memo.memoOrder=[[NSString alloc]initWithFormat:@"%i", order];
+            memo.memoOrder=[[NSString alloc]initWithFormat:@"%li", (long)order];
         }
         
     }

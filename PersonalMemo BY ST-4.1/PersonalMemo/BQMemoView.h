@@ -36,6 +36,7 @@
 - (void)writeRemindTime:(NSString *)remindTime;
 - (void)changePigeonState;
 - (void)changeClockState;
+- (void)initSizeWithDictionaryForNormalState:(NSDictionary *)normal andEditState:(NSDictionary *)editState;
 
 //改变便签状态
 - (void)changeMemoState;

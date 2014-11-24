@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BQMemoBoard.h"
 #import "BQMemoView.h"
+#import "BQMemoModel.h"
 #import "BQThemeCreationView.h"
 #import "BQMemoTransmition.h"
 
